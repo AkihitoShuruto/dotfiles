@@ -2,7 +2,7 @@
 {
     "height": 25, // Waybar height (to be removed for auto height)
     "layer": "top", // Waybar at top layer
-    "output": ["DP-1", "HDMI-A-1"],
+    "output": ["DP-1", "DP-2"],
     // "width": 1280, // Waybar width
     "margin-top": 6,
     "margin-left": 10,
