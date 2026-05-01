@@ -98,6 +98,24 @@ if [ -d "$DOTFILES_DIR/home" ]; then
     done
 fi
 
+# Wallpapers kopieren
+echo "==> Backing up and copying wallpapers..."
+
+WALLPAPER_SOURCE="$DOTFILES_DIR/wallpapers"
+WALLPAPER_TARGET="$HOME/Pictures/wallpapers"
+
+mkdir -p "$HOME/Pictures"
+
+if [ -d "$WALLPAPER_SOURCE" ]; then
+    if [ -e "$WALLPAPER_TARGET" ]; then
+        echo "Backing up existing wallpapers"
+        mv "$WALLPAPER_TARGET" "$HOME/Pictures/wallpapers_$TIMESTAMP"
+    fi
+
+    cp -r "$WALLPAPER_SOURCE" "$WALLPAPER_TARGET"
+    echo "Copied wallpapers -> ~/Pictures/wallpapers"
+fi
+
 # Services
 echo "==> Enabling services..."
 
