@@ -1,33 +1,34 @@
 // -*- mode: jsonc -*-
 {
-    "height": 25, // Waybar height (to be removed for auto height)
+    "height": 35, // Waybar height (to be removed for auto height)
     "layer": "top", // Waybar at top layer
-    "output": ["DP-1", "DP-2"],
+    "output": ["DP-1", "DP-2", "HDMI-A-1"],
     // "width": 1280, // Waybar width
-    "margin-top": 6,
-    "margin-left": 10,
+    "margin-top": 0,
+    "margin-left": 0,
     "margin-bottom": 0,
-    "margin-right": 10,
-    "spacing": 3, // Gaps between modules (4px)
+    "margin-right": 0,
+    "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
-        //"hyprland/submap",
-        "custom/media",
-        "tray"
+        "custom/music"
+        //"hyprland/window"
+        
     ],
     "modules-center": [
-        "hyprland/window"
+        "clock"
     ],
     "modules-right": [
-        "mpd",
-        "idle_inhibitor",
+        "tray",
+        //"mpd",
+        "custom/tailscale",
+        "custom/mullvad",
         "wireplumber",
         "bluetooth",
+        "cpu",
+        "memory",
         "network",
-        "keyboard-state",
-        "hyprland/language",
-        "clock",
         "custom/power"
     ],
     // Modules configuration
@@ -48,11 +49,8 @@
             "9": "9"
         }
     },
-    "sway/language": {
+    "hyprland/language": {
 	    "format": "{}"
-    },
-    "hyprland/submap": {
-        "format": "<span style=\"italic\">{}</span>"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -198,11 +196,37 @@
     },
     "bluetooth": {
         "format": "(status)",
-        "format-connected": " {device_alias} ",
+        "format-connected": " connected ",
         "format-off": "off",
         "interval": 10,
         "on-click": "blueman-manager",
         "on-click-right": "bluetoothctl",
         "on-click-middle": "rfkill toggle bluetooth"
+    },
+    "custom/tailscale": {
+        "exec": "$HOME/.config/waybar/scripts/waybar-tailscale/waybar-tailscale.sh --status",
+        "on-click": "$HOME/.config/waybar/scripts/waybar-tailscale/waybar-tailscale.sh --toggle",
+        "on-click-right": "$HOME/.config/waybar/waybar-tailscale.sh --select-exit-node",
+        "exec-on-event": true,
+        "format": "T:VPN: {icon}",
+        "format-icons": {
+            "connected": "on",
+            "stopped": "off"
+        },
+        "tooltip": true,
+        "return-type": "json",
+        "interval": 3
+    },
+    "custom/mullvad": {
+        "exec": "~/.config/waybar/scripts/mullvad/mullvad.sh",
+        "interval": 5,
+        "return-type": "json",
+        "on-click": "~/.config/waybar/scripts/mullvad/mullvad-toggle.sh"
+    },
+    "custom/music": {
+        "exec": "playerctl metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo 'No Music'",
+        "return-type": "plain",
+        "interval": 2,
+        "on-click": "~/.config/waybar/music-rofi.sh"
     }
 }
