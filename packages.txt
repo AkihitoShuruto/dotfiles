@@ -1,0 +1,23 @@
+#WM
+hyprland
+hyprpaper
+waybar
+
+#menu
+rofi
+
+#terminal
+kitty
+
+#other applications
+firefox
+vscodium
+betterbird
+pear-desktop
+thunar
+tauon
+vesktop
+gwenview
+fstl
+obsidian
+telegram
