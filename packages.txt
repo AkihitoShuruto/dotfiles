@@ -5,6 +5,7 @@ waybar
 
 #menu
 rofi
+cliphist
 
 #terminal
 kitty
