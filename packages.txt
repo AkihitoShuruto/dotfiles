@@ -2,6 +2,10 @@
 hyprland
 hyprpaper
 waybar
+hyprpolkitagent
+mako
+xdg-desktop-portal-hyprland
+wl-copy
 
 #menu
 rofi
